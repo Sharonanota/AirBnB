@@ -1,5 +1,5 @@
 import React from "react"
-import airbnb2 from './airbnb2.png';
+import airbnb2 from '../components/images/airbnb2.png';
 
 
 

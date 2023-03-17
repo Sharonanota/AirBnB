@@ -1,26 +1,40 @@
 import React from "react"
 
-import kate from './katie-zaferes.png';
+// import kate from './images/katie-zaferes.png';
 
-import star from './star.png';
-
-
+import star from './images/star.png';
 
 
-export default function Card() {
+
+
+
+
+export default function Card(props) {
+    let badgeText
+    if (props.item.openSpots  === 0) {
+        badgeText = "SOLD OUT"
+    } else if (props.item.country === "Online") {
+        badgeText = "ONLINE"
+    }
+    
+    /*
+    Challenge:
+    1. Display the correct text in the badge based on the logic above
+    2. Only display the badge if badgeText has a value
+    */
+    
     return (
         <div className="card">
-        <img src={kate} alt="kate" className="card--image"/>
-        <div className="card--stats">
-        <img src={star} alt="star" className="card--star"/>
-        <span>5.0</span>
-                <span className="gray">(6) • </span>
-                <span className="gray">USA</span>
-                </div>
-                <p>Life Lessons with Katie Zaferes</p>
-            <p>From $136 / person</p>
-        
+            {badgeText && <div className="card--badge">{badgeText}</div>}
+            <img src={props.item.coverImg} className="card--image" alt="img" />
+            <div className="card--stats">
+                <img src={star} className="card--star" alt="img" />
+                <span>{props.item.stats.rating}</span>
+                <span className="gray">({props.item.stats.reviewCount}) • </span>
+                <span className="gray">{props.item.country}</span>
+            </div>
+            <p className="card--title">{props.item.title}</p>
+            <p className="card--price"><span className="bold">From ${props.item.price}</span> / person</p>
         </div>
-      
     )
 }
